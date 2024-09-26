@@ -19,9 +19,9 @@ public interface IRaiser
     /// <summary>
     /// Asynchronously raise a event to multiple handlers
     /// </summary>
-    /// <param name="event">Notification object</param>
+    /// <param name="event">Event object</param>
     /// <param name="cancellationToken">Optional cancellation token</param>
-    /// <returns>A task that represents the publish operation.</returns>
+    /// <returns>A task that represents the raise operation.</returns>
     Task Raise<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
         where TEvent : IEvent;
 }
