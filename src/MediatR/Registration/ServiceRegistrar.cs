@@ -87,6 +87,8 @@ public static class ServiceRegistrar
                 services.AddTransient(multiOpenInterface, type);
             }
         }
+
+        services = services.AddSingleton(typeof(IEventCoordinator<>), typeof(EventCoordinator<>));
     }
 
     private static void ConnectImplementationsToTypesClosing(Type openRequestInterface,

@@ -4,12 +4,12 @@ using System.Threading;
 namespace MediatR;
 
 /// <summary>
-/// Raise a event through the mediator pipeline to be handled by multiple handlers.
+/// Raise a event through the mediator pipeline to be handled by multiple coordinators.
 /// </summary>
 public interface IRaiser
 {
     /// <summary>
-    /// Asynchronously raise a event to multiple handlers
+    /// Asynchronously raise a event to multiple coordinators
     /// </summary>
     /// <param name="event">Event object</param>
     /// <param name="cancellationToken">Optional cancellation token</param>
@@ -17,7 +17,7 @@ public interface IRaiser
     Task Raise(object @event, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Asynchronously raise a event to multiple handlers
+    /// Asynchronously raise a event to multiple coordinators
     /// </summary>
     /// <param name="event">Event object</param>
     /// <param name="cancellationToken">Optional cancellation token</param>
