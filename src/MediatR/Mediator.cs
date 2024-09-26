@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Wrappers;
 
 /// <summary>
@@ -196,5 +197,18 @@ public class Mediator : IMediator
         var items = handler.Handle(request, _serviceProvider, cancellationToken);
 
         return items;
+    }
+
+    public Task Raise<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
+        where TEvent : IEvent
+    {
+        if (@event == null)
+        {
+            throw new ArgumentNullException(nameof(@event));
+        }
+
+        var eventCoordinator = _serviceProvider.GetService<IEventCoordinator<TEvent>>();
+        eventCoordinator?.OnEvent(@event);
+        return Task.CompletedTask;
     }
 }
